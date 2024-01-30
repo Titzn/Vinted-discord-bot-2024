@@ -13,7 +13,7 @@ Getting Started 🛠️
 Clone the repository:
 bash
 Copy code
-git clone https://github.com/YOUR_USERNAME/YOUR_REPO.git
+git clone https://github.com/Titzn/Vinted-discord-bot-2024.git
 Install dependencies:
 bash
 Copy code
