@@ -2,10 +2,27 @@ import discord
 from discord.ext import commands
 import vinted_scraper
 import asyncio
+import colorama
+from colorama import *
+
+colorama.init()
 
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='!', intents=intents)
 scraper = vinted_scraper.VintedScraper("https://www.vinted.com")
+print(Fore.RED + """
+      
+   
+  _______ _ _                      _       _           _   _           _   
+ |__   __(_) |                    (_)     | |         | | | |         | |  
+    | |   _| |_ __ _ _ __   __   ___ _ __ | |_ ___  __| | | |__   ___ | |_ 
+    | |  | | __/ _` | '_ \  \ \ / / | '_ \| __/ _ \/ _` | | '_ \ / _ \| __|
+    | |  | | || (_| | | | |  \ V /| | | | | ||  __/ (_| | | |_) | (_) | |_ 
+    |_|  |_|\__\__,_|_| |_|   \_/ |_|_| |_|\__\___|\__,_| |_.__/ \___/ \__|
+                                                                           
+                                                                           
+   
+      """ + Fore.RESET)
 
 @bot.event
 async def on_ready():
@@ -47,4 +64,4 @@ def create_embed(item_info):
 
     return embed
 
-bot.run('your token')
+bot.run('')
