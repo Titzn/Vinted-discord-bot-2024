@@ -1,4 +1,4 @@
-##Vinted Bot for Discord 🤖🛍️
+Vinted Bot for Discord 🤖🛍️
 
 
 ![image](https://github.com/Titzn/Vinted-discord-bot-2024/assets/139163394/7b46f6fa-1267-4f53-801c-ea8fcc2fa3b5)
