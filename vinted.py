@@ -3,9 +3,12 @@ from discord.ext import commands
 import vinted_scraper
 import asyncio
 import colorama
-from colorama import *
+from colorama import Fore
 
 colorama.init()
+
+TOKEN = ''
+CHANNEL_ID =  # Replace with your channel ID
 
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='!', intents=intents)
@@ -23,6 +26,8 @@ print(Fore.RED + """
                                                                            
    
       """ + Fore.RESET)
+# Embed Colors
+EMBED_COLOR = discord.Colour.blue()
 
 @bot.event
 async def on_ready():
@@ -30,38 +35,43 @@ async def on_ready():
     await search_vinted()
 
 async def search_vinted():
-    await bot.wait_until_ready()
     while not bot.is_closed():
         items = scraper.search({"search_text": "board games"})
-        
+
         if items:
             for item in items:
                 item_info = scraper.item(item.id)
                 embed = create_embed(item_info)
-                channel = bot.get_channel()  # Remplacez par l'ID de votre canal Discord (int)
+                channel = bot.get_channel(CHANNEL_ID)
                 await channel.send(embed=embed)
+                await asyncio.sleep(1)  # Pause for 1 second
 
         await asyncio.sleep(300)
 
 def create_embed(item_info):
     embed = discord.Embed(
         title=f"**{item_info.title}**",
-        description=f"[Voir l'article sur Vinted]({item_info.url})",
-        color=0x3498db
+        description=f"[{item_info.url}]",
+        color=EMBED_COLOR
     )
 
-    embed.add_field(name="💲 Prix", value=f"{item_info.price}€", inline=True)
-    embed.add_field(name="📏 Taille", value=item_info.size_title if hasattr(item_info, 'size_title') else "Pas de donnée", inline=True)
-    embed.add_field(name="🏷️ Marque", value=item_info.brand_title if hasattr(item_info, 'brand_title') else "Pas de donnée", inline=True)
-    embed.add_field(name="👍👎 Avis", value=f"{item_info.positive} 👍 / {item_info.negative} 👎" if hasattr(item_info, 'positive') and hasattr(item_info, 'negative') else "Pas de donnée", inline=True)
-    embed.add_field(name="🌍 Localisation", value=f"{item_info.country_title}, {item_info.city}" if hasattr(item_info, 'country_title') and hasattr(item_info, 'city') else "Pas de donnée", inline=True)
-    embed.add_field(name="👤 Vendeur", value=item_info.username if hasattr(item_info, 'username') else "Pas de donnée", inline=True)
-    
-    # Ajouter jusqu'à 4 images
-    if hasattr(item_info, 'photo') and hasattr(item_info.photo, 'thumbnails') and item_info.photo.thumbnails:
-        for i, thumbnail in enumerate(item_info.photo.thumbnails[:4]):  # Limiter à 4 images
-            embed.set_image(url=thumbnail.url)
+    # Add Price field
+    embed.add_field(name="💲 **Prix**", value=f"**{item_info.price}€**", inline=False)
+
+    # Add Size field
+    embed.add_field(name="📏 **Taille**", value=f"**{item_info.size_title}**" if hasattr(item_info, 'size_title') else "Pas de donnée", inline=True)
+
+    # Add Author field
+    embed.add_field(name="👤 **Auteur**", value=f"**{item_info.username}**" if hasattr(item_info, 'username') else "Pas de donnée", inline=True)
+
+    # Add State field
+    embed.add_field(name="📦 **État**", value=f"**{item_info.condition}**" if hasattr(item_info, 'condition') else "Pas de donnée", inline=True)
+
+    # Add Image with Link
+    if hasattr(item_info, 'photos') and item_info.photos:
+        embed.set_image(url=item_info.photos[0].thumbnails[0].url)  # Display the first thumbnail
 
     return embed
 
-bot.run('')
+
+bot.run(TOKEN)
