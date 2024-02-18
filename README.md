@@ -1,41 +1,52 @@
-Vinted Bot for Discord 🤖🛍️
-image
+# Vinted Bot for Discord 🤖🛍️
+
+![Vinted Bot](https://github.com/Titzn/Vinted-discord-bot-2024/blob/main/assets/vinted_bot.png)
 
 A Discord bot that scrapes Vinted to find and notify about new items.
 
-Features 🚀
-Real-time Updates: Get instant notifications about newly added items on Vinted.
-Customizable Search: Easily customize the search criteria to find items that match your interests.
-Rich Embeds: Detailed information about each item is displayed using Discord's rich embeds.
-Getting Started 🛠️
-Clone the repository:
+## Features 🚀
 
-bash
-Copy code
-git clone https://github.com/Titzn/Vinted-discord-bot-2024.git
-Install dependencies:
+- **Real-time Updates**: Get instant notifications about newly added items on Vinted.
+- **Customizable Search**: Easily customize the search criteria to find items that match your interests.
+- **Rich Embeds**: Detailed information about each item is displayed using Discord's rich embeds.
 
-bash
-Copy code
-pip install -r requirements.txt
-Configure the bot:
+## Getting Started 🛠️
 
-Obtain your Discord bot token and replace YOUR_BOT_TOKEN in vinted.py.
-Adjust other settings and preferences as needed.
-Run the bot:
+1. Clone the repository:
 
-bash
-Copy code
-python vinted.py
-Configuration ⚙️
-Open vinted.py and find the section for bot configuration.
-Replace YOUR_BOT_TOKEN with your actual Discord bot token.
-Adjust other settings such as the Discord channel ID and search criteria.
-Contributing 🤝
+    ```bash
+    git clone https://github.com/Titzn/Vinted-discord-bot-2024.git
+    ```
+
+2. Install dependencies:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3. Configure the bot:
+   
+   - Obtain your Discord bot token and replace `YOUR_BOT_TOKEN` in `vinted.py`.
+   - Adjust other settings and preferences as needed.
+
+4. Run the bot:
+
+    ```bash
+    python vinted.py
+    ```
+
+## Configuration ⚙️
+
+Open `vinted.py` and find the section for bot configuration. Replace `YOUR_BOT_TOKEN` with your actual Discord bot token. Adjust other settings such as the Discord channel ID and search criteria.
+
+## Contributing 🤝
+
 Contributions are welcome! Please open an issue or submit a pull request.
 
-License 📝
+## License 📝
+
 This project is licensed under the MIT License.
 
-Acknowledgments 🙏
+## Acknowledgments 🙏
+
 Special thanks to Giglium for creating the Vinted Scraper Python package.
