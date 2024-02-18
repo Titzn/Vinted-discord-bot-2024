@@ -1,6 +1,7 @@
 import os
 import subprocess
 import sys
+import json
 
 required_modules = [
     'discord',
@@ -30,11 +31,34 @@ import colorama
 from colorama import Fore
 import fade
 
-
 colorama.init()
 
-TOKEN = os.getenv('DISCORD_TOKEN')  # Fetch token from environment variable
-CHANNEL_ID = int(os.getenv('CHANNEL_ID'))  # Fetch channel ID from environment variable
+TOKEN = ""
+CHANNEL_ID = ""
+PRICE_RANGE = ""
+ITEM_TYPE = ""
+
+config_file = "config.json"
+
+def load_or_create_config():
+    if os.path.exists(config_file):
+        with open(config_file, 'r') as f:
+            return json.load(f)
+    else:
+        config = {}
+        config['TOKEN'] = input("Enter your Discord token: ")
+        config['CHANNEL_ID'] = int(input("Enter your channel ID: "))
+        config['PRICE_RANGE'] = input("Enter your price range (format: min€-max€): ")
+        config['ITEM_TYPE'] = input("Enter the type of item you want to search for: ")
+        with open(config_file, 'w') as f:
+            json.dump(config, f)
+        return config
+
+config = load_or_create_config()
+TOKEN = config['TOKEN']
+CHANNEL_ID = config['CHANNEL_ID']
+PRICE_RANGE = config['PRICE_RANGE']
+ITEM_TYPE = config['ITEM_TYPE']
 
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='!', intents=intents)
@@ -50,6 +74,7 @@ faded_text = fade.greenblue("""
                                    [+]Github: https://github.com/Titzn/
                                    [+]Discord: titzn
     """)
+
 # Embed Colors
 EMBED_COLOR = discord.Colour.blue()
 
@@ -61,7 +86,7 @@ async def on_ready():
 async def search_vinted():
     while not bot.is_closed():
         try:
-            items = scraper.search({"search_text": "board games"})
+            items = scraper.search({"search_text": ITEM_TYPE})
 
             if items:
                 for item in items:
