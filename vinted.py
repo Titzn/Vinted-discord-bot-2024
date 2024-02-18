@@ -15,13 +15,13 @@ def install_missing_modules():
         try:
             __import__(module)
         except ImportError:
-            print(f"Module '{module}' n'est pas installé. Téléchargement en cours...")
+            print(f"Module '{module}' is not installed. Installing...")
             subprocess.check_call([sys.executable, "-m", "pip", "install", module])
-            print(f"Module '{module}' installé avec succès!")
+            print(f"Module '{module}' installed successfully!")
 
 install_missing_modules()
 
-# Maintenant, vous pouvez importer vos modules en toute sécurité
+# Now, you can safely import your modules
 import discord
 from discord.ext import commands
 import vinted_scraper
@@ -83,16 +83,16 @@ def create_embed(item_info):
     )
 
     # Add Price field
-    embed.add_field(name="💲 **Prix**", value=f"**{item_info.price}€**", inline=False)
+    embed.add_field(name="💲 **Price**", value=f"**{item_info.price}€**", inline=False)
 
     # Add Size field
-    embed.add_field(name="📏 **Taille**", value=f"**{item_info.size_title}**" if hasattr(item_info, 'size_title') else "Pas de donnée", inline=True)
+    embed.add_field(name="📏 **Size**", value=f"**{item_info.size_title}**" if hasattr(item_info, 'size_title') else "No data", inline=True)
 
     # Add Author field
-    embed.add_field(name="👤 **Auteur**", value=f"**{item_info.username}**" if hasattr(item_info, 'username') else "Pas de donnée", inline=True)
+    embed.add_field(name="👤 **Author**", value=f"**{item_info.username}**" if hasattr(item_info, 'username') else "No data", inline=True)
 
     # Add State field
-    embed.add_field(name="📦 **État**", value=f"**{item_info.condition}**" if hasattr(item_info, 'condition') else "Pas de donnée", inline=True)
+    embed.add_field(name="📦 **Condition**", value=f"**{item_info.condition}**" if hasattr(item_info, 'condition') else "No data", inline=True)
 
     # Add Image with Link
     if hasattr(item_info, 'photos') and item_info.photos:
