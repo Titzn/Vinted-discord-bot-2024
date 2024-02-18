@@ -1,3 +1,4 @@
+import os
 import discord
 from discord.ext import commands
 import vinted_scraper
@@ -7,8 +8,8 @@ from colorama import Fore
 
 colorama.init()
 
-TOKEN = ''
-CHANNEL_ID =  # Replace with your channel ID
+TOKEN = os.getenv('DISCORD_TOKEN')  # Fetch token from environment variable
+CHANNEL_ID = int(os.getenv('CHANNEL_ID'))  # Fetch channel ID from environment variable
 
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='!', intents=intents)
@@ -36,17 +37,20 @@ async def on_ready():
 
 async def search_vinted():
     while not bot.is_closed():
-        items = scraper.search({"search_text": "board games"})
+        try:
+            items = scraper.search({"search_text": "board games"})
 
-        if items:
-            for item in items:
-                item_info = scraper.item(item.id)
-                embed = create_embed(item_info)
-                channel = bot.get_channel(CHANNEL_ID)
-                await channel.send(embed=embed)
-                await asyncio.sleep(1)  # Pause for 1 second
+            if items:
+                for item in items:
+                    item_info = scraper.item(item.id)
+                    embed = create_embed(item_info)
+                    channel = bot.get_channel(CHANNEL_ID)
+                    await channel.send(embed=embed)
+                    await asyncio.sleep(1)  # Pause for 1 second
 
-        await asyncio.sleep(300)
+            await asyncio.sleep(300)
+        except Exception as e:
+            print(f"An error occurred: {e}")
 
 def create_embed(item_info):
     embed = discord.Embed(
@@ -72,6 +76,5 @@ def create_embed(item_info):
         embed.set_image(url=item_info.photos[0].thumbnails[0].url)  # Display the first thumbnail
 
     return embed
-
 
 bot.run(TOKEN)
