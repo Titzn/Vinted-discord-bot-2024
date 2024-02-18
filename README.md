@@ -42,7 +42,9 @@ Adjust other settings such as the Discord channel ID and search criteria. You ca
 
 ```python
 items = scraper.search({"search_text": "board games"})
+```
 Replace "board games" with the item you want to search for on Vinted.
+
 
 Contributing 🤝
 Contributions are welcome! Please open an issue or submit a pull request.
