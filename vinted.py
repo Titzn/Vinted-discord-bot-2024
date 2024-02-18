@@ -1,4 +1,27 @@
 import os
+import subprocess
+import sys
+
+required_modules = [
+    'discord',
+    'vinted_scraper',
+    'asyncio',
+    'colorama',
+    'fade'
+]
+
+def install_missing_modules():
+    for module in required_modules:
+        try:
+            __import__(module)
+        except ImportError:
+            print(f"Module '{module}' n'est pas installé. Téléchargement en cours...")
+            subprocess.check_call([sys.executable, "-m", "pip", "install", module])
+            print(f"Module '{module}' installé avec succès!")
+
+install_missing_modules()
+
+# Maintenant, vous pouvez importer vos modules en toute sécurité
 import discord
 from discord.ext import commands
 import vinted_scraper
@@ -6,6 +29,7 @@ import asyncio
 import colorama
 from colorama import Fore
 import fade
+
 
 colorama.init()
 
