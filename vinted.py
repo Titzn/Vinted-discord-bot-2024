@@ -5,6 +5,7 @@ import vinted_scraper
 import asyncio
 import colorama
 from colorama import Fore
+import fade
 
 colorama.init()
 
@@ -14,19 +15,17 @@ CHANNEL_ID = int(os.getenv('CHANNEL_ID'))  # Fetch channel ID from environment v
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='!', intents=intents)
 scraper = vinted_scraper.VintedScraper("https://www.vinted.com")
-print(Fore.RED + """
-      
-   
+faded_text = fade.greenblue("""
   _______ _ _                      _       _           _   _           _   
  |__   __(_) |                    (_)     | |         | | | |         | |  
     | |   _| |_ __ _ _ __   __   ___ _ __ | |_ ___  __| | | |__   ___ | |_ 
     | |  | | __/ _` | '_ \  \ \ / / | '_ \| __/ _ \/ _` | | '_ \ / _ \| __|
     | |  | | || (_| | | | |  \ V /| | | | | ||  __/ (_| | | |_) | (_) | |_ 
-    |_|  |_|\__\__,_|_| |_|   \_/ |_|_| |_|\__\___|\__,_| |_.__/ \___/ \__|
-                                                                           
-                                                                           
-   
-      """ + Fore.RESET)
+    |_|  |_|\__\__,_|_| |_|   \_/ |_|_| |_|\__\___|\__,_| |_.__/ \___/ \__|                                                                          
+                                                                                                                                                                                                                                             
+                                   [+]Github: https://github.com/Titzn/
+                                   [+]Discord: titzn
+    """)
 # Embed Colors
 EMBED_COLOR = discord.Colour.blue()
 
