@@ -1,6 +1,7 @@
 # Vinted Bot for Discord 🤖🛍️
 
-![Vinted Bot](https://github.com/Titzn/Vinted-discord-bot-2024/blob/main/assets/vinted_bot.png)
+![image](https://github.com/Titzn/Vinted-discord-bot-2024/assets/139163394/f8398738-8a10-4fd5-a641-416cd60d3e51)
+
 
 A Discord bot that scrapes Vinted to find and notify about new items.
 
