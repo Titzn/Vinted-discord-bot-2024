@@ -1,8 +1,5 @@
 Vinted Bot for Discord 🤖🛍️
-
-
-![image](https://github.com/Titzn/Vinted-discord-bot-2024/assets/139163394/7b46f6fa-1267-4f53-801c-ea8fcc2fa3b5)
-
+image
 
 A Discord bot that scrapes Vinted to find and notify about new items.
 
@@ -12,10 +9,12 @@ Customizable Search: Easily customize the search criteria to find items that mat
 Rich Embeds: Detailed information about each item is displayed using Discord's rich embeds.
 Getting Started 🛠️
 Clone the repository:
+
 bash
 Copy code
 git clone https://github.com/Titzn/Vinted-discord-bot-2024.git
 Install dependencies:
+
 bash
 Copy code
 pip install -r requirements.txt
