@@ -2,7 +2,6 @@
 
 ![image](https://github.com/Titzn/Vinted-discord-bot-2024/assets/139163394/f8398738-8a10-4fd5-a641-416cd60d3e51)
 
-
 A Discord bot that scrapes Vinted to find and notify about new items.
 
 ## Features 🚀
@@ -38,16 +37,15 @@ A Discord bot that scrapes Vinted to find and notify about new items.
 
 ## Configuration ⚙️
 
-Open `vinted.py` and find the section for bot configuration. Replace `YOUR_BOT_TOKEN` with your actual Discord bot token. Adjust other settings such as the Discord channel ID and search criteria.
+Open `vinted.py` and find the section for bot configuration. Replace `YOUR_BOT_TOKEN` with your actual Discord bot token. 
+Adjust other settings such as the Discord channel ID and search criteria. You can modify the search criteria by editing the line:
 
-## Contributing 🤝
+```python
+items = scraper.search({"search_text": "board games"})
+Replace "board games" with the item you want to search for on Vinted.
 
+Contributing 🤝
 Contributions are welcome! Please open an issue or submit a pull request.
 
-## License 📝
-
+License 📝
 This project is licensed under the AGPL 3.0 License.
-
-## Acknowledgments 🙏
-
-Special thanks to Giglium for creating the Vinted Scraper Python package.
